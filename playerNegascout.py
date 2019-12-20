@@ -45,7 +45,8 @@ class myPlayer(PlayerInterface):
             print("I lost :(!!")
 
     def heuristique(self):
-        if self._mycolor is self._board._WHITE:
+        #print("Next Player : ",self._board._nextPlayer)
+        if self._board._nextPlayer==1:
             return self._board._nbWHITE - self._board._nbBLACK
         return self._board._nbBLACK - self._board._nbWHITE
 
@@ -75,7 +76,7 @@ class myPlayer(PlayerInterface):
     def bestMove(self):
         debut=time.time()
         maxpoints=-float('infinity')
-        for i in range(1,6):
+        for i in range(1,5):
             for m in self._board.legal_moves():
                 self._board.push(m)
                 points=self.negascout(i-1,-float('infinity'),float('infinity'))
@@ -86,6 +87,8 @@ class myPlayer(PlayerInterface):
                     maxpoints=points
                     mx=m[1]
                     my=m[2]
+
+        #time.sleep(3)
 
 
 
